@@ -1,0 +1,7 @@
+/target/
+/pkg/
+
+/web/dist/
+/web/src/pkg/
+/web/node_modules/
+
