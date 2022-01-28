@@ -93,9 +93,9 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
-version = "0.2.115"
+version = "0.2.116"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a8d982fa7a96a000f6ec4cfe966de9703eccde29750df2bb8949da91b0e818d"
+checksum = "565dbd88872dbe4cc8a46e527f26483c1d1f7afa6b884a3bd6cd893d4f98da74"
 
 [[package]]
 name = "log"
@@ -160,7 +160,7 @@ dependencies = [
 [[package]]
 name = "roost"
 version = "1.0.0"
-source = "git+https://github.com/RubixDev/roost#fb9b9cd470c7385cc51c4adabff2fd1c5cc4c5c7"
+source = "git+https://github.com/RubixDev/roost#c1cdb983d8b902ea5ff4219c1179e22633388c25"
 dependencies = [
  "rust_decimal",
  "structopt",
