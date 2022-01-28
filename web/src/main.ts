@@ -12,7 +12,7 @@ async function main() {
     const consoleDiv = document.getElementById('console') as HTMLDivElement
 
     runButton.addEventListener('click', () => {
-        consoleDiv.innerText = ''
+        consoleDiv.innerHTML = ''
         roostWorker?.terminate()
         roostWorker = makeWorker(editor.getValue())
         killButton.disabled = false
@@ -27,7 +27,7 @@ async function main() {
         let worker = new Worker(new URL('./roost.worker.ts', import.meta.url))
         worker.onmessage = function (event: { data: any[] }) {
             if (event.data[0] === 'print') {
-                consoleDiv.innerText += event.data[1]
+                consoleDiv.innerHTML += event.data[1]
                 consoleDiv.scrollTo(0, consoleDiv.scrollHeight)
             }
             if (event.data[0] === 'ready') worker.postMessage(['run', code])

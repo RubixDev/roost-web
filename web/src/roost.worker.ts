@@ -10,7 +10,7 @@ async function main() {
             try {
                 run(event.data[1])
             } catch (error) {
-                postMessage(['print', error + '\n'])
+                postMessage(['print', `<span class="bold red">${error}</span><br>`])
             }
             postMessage(['finished'])
         }

@@ -2,6 +2,9 @@
     --bg: #1e1e1e;
     --bg-light: #282c34;
     --fg: #abb2bf;
+    --red: #ff616e;
+    --cyan: #4cd1e0;
+    --dark-gray: #4f5666;
 }
 
 /* ---------- Layout ----------- */
@@ -88,4 +91,21 @@ body {
 #kill-button:disabled {
     opacity: 30%;
     cursor: unset;
+}
+
+/* ------------- Colors ------------ */
+.bold {
+    font-weight: bold;
+}
+
+.red {
+    color: var(--red);
+}
+
+.cyan {
+    color: var(--cyan);
+}
+
+.dark-gray {
+    color: var(--dark-gray);
 }
