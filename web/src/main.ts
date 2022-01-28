@@ -7,10 +7,12 @@ async function main() {
 
     let roostWorker: Worker | null = null;
 
-    const runButton = document.getElementById('button') as HTMLButtonElement
-    const killButton = document.getElementById('button2') as HTMLButtonElement
+    const runButton = document.getElementById('run-button') as HTMLButtonElement
+    const killButton = document.getElementById('kill-button') as HTMLButtonElement
+    const consoleDiv = document.getElementById('console') as HTMLDivElement
 
     runButton.addEventListener('click', () => {
+        consoleDiv.innerText = ''
         roostWorker?.terminate()
         roostWorker = makeWorker(editor.getValue())
         killButton.disabled = false
@@ -24,7 +26,10 @@ async function main() {
     function makeWorker(code: string): Worker {
         let worker = new Worker(new URL('./roost.worker.ts', import.meta.url))
         worker.onmessage = function (event: { data: any[] }) {
-            if (event.data[0] === 'print') console.log(event.data[1])
+            if (event.data[0] === 'print') {
+                consoleDiv.innerText += event.data[1]
+                consoleDiv.scrollTo(0, consoleDiv.scrollHeight)
+            }
             if (event.data[0] === 'ready') worker.postMessage(['run', code])
             if (event.data[0] === 'finished') {
                 roostWorker?.terminate()

@@ -10,7 +10,7 @@ async function main() {
             try {
                 run(event.data[1])
             } catch (error) {
-                console.log('crashed:', error)
+                postMessage(['print', error + '\n'])
             }
             postMessage(['finished'])
         }
