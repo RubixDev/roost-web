@@ -19,10 +19,4 @@ async function main() {
 
 export function print(message: string) {
     postMessage(['print', message])
-    sleep(10)
-}
-
-function sleep(ms: number) {
-    const start = Date.now()
-    while (Date.now() - start < ms);
 }
