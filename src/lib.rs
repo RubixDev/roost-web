@@ -6,7 +6,6 @@ use roost::interpreter::Interpreter;
 #[wasm_bindgen(raw_module = "../roost.worker")]
 extern {
     pub fn print(message: String);
-    // pub fn shouldTerminate() -> bool;
 }
 
 #[wasm_bindgen]
