@@ -46,8 +46,9 @@ export async function initMonaco(): Promise<monaco.editor.IStandaloneCodeEditor>
 
     const element = document.getElementById('editor') as HTMLDivElement
 
+    const savedCode = localStorage.getItem('code')
     const editor = monaco.editor.create(element, {
-        value: [
+        value: savedCode != null ? savedCode : [
             `fun fib(n) {`,
             `    return n < 2 ? n : fib(n-1) + fib(n-2)`,
             `}`,

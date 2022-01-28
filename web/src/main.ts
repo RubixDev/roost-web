@@ -4,6 +4,9 @@ main()
 
 async function main() {
     const editor = await initMonaco()
+    editor.onDidChangeModelContent(() => {
+        localStorage.setItem('code', editor.getValue())
+    })
 
     let roostWorker: Worker | null = null;
 
