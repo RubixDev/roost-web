@@ -1,4 +1,5 @@
-export default JSON.stringify({
+export default JSON.stringify(
+{
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "roost",
 	"patterns": [
@@ -43,7 +44,7 @@ export default JSON.stringify({
 				},
 				{
 					"name": "storage.type.roost",
-					"match": "\\bvar\\b"
+					"match": "\\b(var|fun)\\b"
 				}
 			]
 		},
@@ -170,4 +171,5 @@ export default JSON.stringify({
 		}
 	},
 	"scopeName": "source.roost"
-})
+}
+)

@@ -1,11 +1,16 @@
+GRAMMAR_FILE = web/src/roost-grammar.ts
+
 debug:
 	cd web && npx webpack --progress --mode development
 
-release:
+release: pull
 	cd web && npx webpack --progress --mode production
 
-setup:
+pull:
 	cd web && npm i
+	curl https://raw.githubusercontent.com/RubixDev/vscode-roost/master/syntaxes/roost.tmLanguage.json > $(GRAMMAR_FILE)
+	sed -i '1i export default JSON.stringify(' $(GRAMMAR_FILE)
+	echo ")" >> $(GRAMMAR_FILE)
 
 crate:
 	wasm-pack build --target web --out-dir web/src/pkg
