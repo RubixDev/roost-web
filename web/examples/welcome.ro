@@ -1,0 +1,116 @@
+/|
+  Welcome to the Roost Playground!
+  Roost is a simple interpreted programming language I made.
+
+  You can type any code in this field and run it with the green play button below,
+  and terminate it with the red stop button next to it.
+
+  Everything you see here happens in your browser without any communication to
+  a server after the initial download.
+
+  There are some simple examples available to load below.
+  Everything you edit is saved on your machine, so you do not have to worry
+  about loosing what you typed. Just be careful when loading an example,
+  as that will overwrite your current code.
+
+  The source code for roost and this playground are available here:
+  https://github.com/RubixDev/roost
+  https://github.com/RubixDev/roost-web
+|/
+
+// This is a line comment that extends to the end of the line
+/| This is a block comment that is enclosed by two delimeters |/
+
+// Functions can be defined with the 'fun' keyword:
+fun greet(name) {
+    // 'printl' is 'print' with a line break at the end
+    printl('Hello, ' + name + '!') // Strings can be concatenated with any other type
+}
+
+// Calling a function:
+greet("World") // Strings can be enclosed with both single and double quotes
+
+// for-loops can iterate through ranges and strings
+for (num in 1..=20) { // There are inclusive '..=' and exclusive '..' ranges
+    printl(num)
+    // There are '|' and '&' for logical OR and AND operations
+    if (num == 42 | num > 99)
+        // A single statement in a block does not require curly braces
+        printl(num, 'is nice') // 'print' and 'printl' accept multiple arguments, which will be joined with spaces
+}
+
+// ranges can also be backwards
+for (i in 10..0) print(i + ', ')
+printl()
+
+// New variables are declared with the 'var' keyword
+var iteration = 0
+// while-loops check for a condition on every iteration
+while (iteration < 5) {
+    print(iteration + ', ')
+    // Declared variables can be re-assigned with '=', '+=', '-=', '*=', or '/='
+    iteration += 1
+}
+printl()
+
+// Re-declaring a variable can change its type
+var iteration = ''
+// 'loop' keywords will only stop when 'break' is called
+loop {
+    if (iteration == 'iiii') break
+    iteration += 'i'
+    // 'continue' skips to the next iteration of the loop
+    if (iteration == 'ii') continue
+    printl(iteration)
+}
+
+printl()
+
+// The type of a variable can be checked with 'typeOf'
+printl(print,     typeOf(print))
+printl(print(),   typeOf(print()))
+printl(greet,     typeOf(greet))
+printl(iteration, typeOf(iteration))
+printl(null,      typeOf(null))
+printl(3.14,      typeOf(3.14))
+printl('hi',      typeOf('hi'))
+printl(true,      typeOf(true))
+printl(1..5,      typeOf(1..5))
+
+// By default functions will return 'void'
+fun add(num1, num2) {
+    // Using the 'return' statement, any other type can be returned
+    return num1 + num2
+}
+// The escape sequences '\n' '\t' and '\r' are supported, although '\r' does not work in the playground
+printl('\n' + add(3, 8) + '\n')
+
+// The following mathematical operations are supported:
+printl(10 + 3)
+printl(10 - 3)
+printl(10 * 3)
+printl(10 / 3)
+printl(10 % 3) // Modulo is the remainder during division
+printl(10 \ 3) // Integer division divides and rounds the result down
+printl(10 ** 3) // Raises 10 to the power of 3
+
+printl()
+
+// There are also unary operations:
+printl(+5)
+printl(-5)
+printl(!true)
+
+printl()
+
+// Any value can be seen as a boolean and can easily be converted to one
+// by negating it twice
+printl(!!0, !!1) // Numbers are false when equal to 0
+printl(!!'', !!'a') // Strings are false when empty
+printl(!!false, !!true) // Booleans are already booleans
+printl(!!(9..=9), !!(9..=10)) // Ranges are false, when the start and end are equal
+printl(!!null, !!print()) // null and void are always false
+printl(!!print, !!greet) // Anything else is true
+
+// A ternary operator like in C or Java(Script) can be used to check for conditions in an expression context
+printl('\n' + (iteration == 'iiii' ? 'yes' : 'no'))

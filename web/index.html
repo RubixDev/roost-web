@@ -14,9 +14,20 @@
 <body>
     <div id="editor"></div>
     <div id="console-container">
-        <div id="console__buttons">
-            <button id="kill-button" disabled="true"></button>
-            <button id="run-button"></button>
+        <div id="console-actionbar">
+            <div id="console-actionbar__load">
+                <span>Load example:</span>
+                <input type="checkbox" id="load-select-cb" style="display: none;">
+                <label for="load-select-cb" id="load-select">
+                    <div id="load-select__current" data-value=""><span>Select an Option</span></div>
+                </label>
+                <button id="load-button" disabled="true">Load</button>
+                <span id="load-select-error" class="red">Error while loading example</span>
+            </div>
+            <div id="console-actionbar__buttons">
+                <button id="kill-button" disabled="true"></button>
+                <button id="run-button"><div></div></button>
+            </div>
         </div>
         <div id="console"></div>
     </div>
