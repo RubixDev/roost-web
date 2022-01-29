@@ -68,6 +68,7 @@ pub fn run(code: String) {
                 .replace('>', "&gt;")
                 .replace('\n', "<br>")
                 .replace('\t', "&emsp;&emsp;&emsp;&emsp;")
+                .replace(' ', "&ensp;")
         )
     });
     match interpreter.run() {
