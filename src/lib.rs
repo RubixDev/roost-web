@@ -19,6 +19,7 @@ macro_rules! exit {
                 .replace('<', "&lt;")
                 .replace('>', "&gt;")
                 .replace('\t', "&emsp;&emsp;&emsp;&emsp;")
+                .replace(' ', "&ensp;")
         }).collect();
 
         let line1 = if $error.location.line > 1 {
@@ -32,7 +33,7 @@ macro_rules! exit {
         let marker = format!("{}<span class=\"red bold\">^</span>", "&ensp;".repeat($error.location.column + 6));
 
         print(format!(
-            "<span class=\"bold cyan\">{:?}</span><span class=\"bold\"> at {}:{}:{}</span><br>{}<br>{}<br>{}{}<br><br><span class=\"bold\">{}</span>",
+            "<br><span class=\"bold cyan\">{:?}</span><span class=\"bold\"> at {}:{}:{}</span><br>{}<br>{}<br>{}{}<br><br><span class=\"red bold\">{}</span>",
             $error.kind,
             $error.location.filename,
             $error.location.line,
