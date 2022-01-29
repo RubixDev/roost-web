@@ -24,6 +24,11 @@ async function main() {
             event.preventDefault()
             run()
         }
+        const isS = event.key === 's' || (event.which || event.keyCode) === 83
+        if (event.ctrlKey && isS) {
+            event.preventDefault()
+            localStorage.setItem('code', editor.getValue())
+        }
     })
 
     // --------------- Web Worker ----------------
