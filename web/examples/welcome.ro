@@ -3,7 +3,8 @@
   Roost is a simple interpreted programming language I made.
 
   You can type any code in this field and run it with the green play button below,
-  and terminate it with the red stop button next to it.
+  or by pressing Ctrl+F5 on your keybord.
+  To terminate the execution press the red stop button next to it.
 
   Everything you see here happens in your browser without any communication to
   a server after the initial download.

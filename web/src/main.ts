@@ -18,6 +18,13 @@ async function main() {
     editor.onDidChangeModelContent(() => {
         localStorage.setItem('code', editor.getValue())
     })
+    document.addEventListener('keydown', (event) => {
+        const isF5 = event.key === 'F5' || (event.which || event.keyCode) === 116
+        if (event.ctrlKey && isF5) {
+            event.preventDefault()
+            run()
+        }
+    })
 
     // --------------- Web Worker ----------------
     let roostWorker: Worker | null = null;
@@ -26,12 +33,14 @@ async function main() {
     const killButton = document.getElementById('kill-button') as HTMLButtonElement
     const consoleDiv = document.getElementById('console') as HTMLDivElement
 
-    runButton.addEventListener('click', () => {
+    function run() {
         consoleDiv.innerHTML = ''
         roostWorker?.terminate()
         roostWorker = makeWorker(editor.getValue())
         killButton.disabled = false
-    })
+    }
+
+    runButton.addEventListener('click', run)
 
     killButton.addEventListener('click', () => {
         roostWorker?.terminate()
