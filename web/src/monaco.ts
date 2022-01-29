@@ -46,9 +46,18 @@ export async function initMonaco(): Promise<monaco.editor.IStandaloneCodeEditor>
 
     const element = document.getElementById('editor') as HTMLDivElement
 
-    const savedCode = localStorage.getItem('code')
+    async function startCode(): Promise<string> {
+        const savedCode = localStorage.getItem('code')
+        if (savedCode === null) {
+            const res = await fetch('examples/welcome.ro')
+            if (!res.ok) return ''
+            return await res.text()
+        }
+        return savedCode
+    }
+
     const editor = monaco.editor.create(element, {
-        value: savedCode != null ? savedCode : '',
+        value: await startCode(),
         language: 'roost',
         theme: 'vs-dark',
         minimap: {
