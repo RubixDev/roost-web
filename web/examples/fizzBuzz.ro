@@ -1,0 +1,14 @@
+fun fizzBuzz(max) {
+    for (num in 0..=max) {
+        if (num % 15 == 0)
+            printl('FizzBuzz')
+        else if (num % 3 == 0)
+            printl('Fizz')
+        else if (num % 5 == 0)
+            printl('Buzz')
+        else
+            printl(num)
+    }
+}
+
+fizzBuzz(100)

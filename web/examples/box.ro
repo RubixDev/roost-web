@@ -1,0 +1,9 @@
+for (y in 0..10) {
+    for (x in 0..20) {
+        if (x == 0 | y == 0 | x == 19 | y == 9)
+            print('#')
+        else
+            print(' ')
+    }
+    printl()
+}

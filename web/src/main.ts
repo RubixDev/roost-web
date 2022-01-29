@@ -9,6 +9,14 @@ const examples = [
         name: 'Fibonacci',
         file: 'fib.ro',
     },
+    {
+        name: 'FizzBuzz',
+        file: 'fizzBuzz.ro',
+    },
+    {
+        name: 'Box',
+        file: 'box.ro',
+    },
 ]
 
 main()
