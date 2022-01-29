@@ -2,17 +2,17 @@
   Welcome to the Roost Playground!
   Roost is a simple interpreted programming language I made.
 
-  You can type any code in this field and run it with the green play button below,
+  You can type any code in this field and run it with the green play button,
   or by pressing Ctrl+F5 on your keybord.
   To terminate the execution press the red stop button next to it.
 
   Everything you see here happens in your browser without any communication to
   a server after the initial download.
 
-  There are some simple examples available to load below.
+  There are some simple examples available to load.
   Everything you edit is saved on your machine, so you do not have to worry
   about loosing what you typed. Just be careful when loading an example,
-  as that will overwrite your current code.
+  as that will overwrite your code.
 
   The source code for roost and this playground are available here:
   https://github.com/RubixDev/roost
