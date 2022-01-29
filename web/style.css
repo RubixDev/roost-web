@@ -144,6 +144,9 @@ body {
     #console-actionbar__load > span:first-of-type {
         display: none;
     }
+    #roost-icon {
+        height: 50%;
+    }
 }
 
 @media screen and (max-width: 37rem) {
