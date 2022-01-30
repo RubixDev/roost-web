@@ -1,6 +1,6 @@
 {
-    "background_color": "black",
-    "theme_color": "#F76964",
+    "background_color": "#1e1e1e",
+    "theme_color": "#b23ed9",
     "orientation": "portrait-primary",
     "lang": "en-US",
     "categories": ["utilities"],
