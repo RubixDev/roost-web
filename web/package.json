@@ -2,6 +2,7 @@
   "name": "roost-web",
   "version": "0.1.0",
   "description": "Web Playground for the roost language",
+  "license": "GPL-2.0-only",
   "main": "./dist/main.bundle.js",
   "type": "module",
   "devDependencies": {
