@@ -22,22 +22,22 @@ macro_rules! exit {
                 .replace(' ', "&ensp;")
         }).collect();
 
-        let line1 = if $error.location.line > 1 {
-            format!("<br>&ensp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.location.line - 1), lines[$error.location.line - 2])
+        let line1 = if $error.start.line > 1 {
+            format!("<br>&ensp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.start.line - 1), lines[$error.start.line - 2])
         } else { String::new() };
-        let line2 = format!("&ensp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.location.line), lines[$error.location.line - 1]);
-        let line3 = if $error.location.line < lines.len() {
-            format!("<br>&ensp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.location.line + 1), lines[$error.location.line])
+        let line2 = format!("&ensp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.start.line), lines[$error.start.line - 1]);
+        let line3 = if $error.start.line < lines.len() {
+            format!("<br>&ensp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.start.line + 1), lines[$error.start.line])
         } else { String::new() };
 
-        let marker = format!("{}<span class=\"red bold\">^</span>", "&ensp;".repeat($error.location.column + 6));
+        let marker = format!("{}<span class=\"red bold\">{}</span>", "&ensp;".repeat($error.start.column + 6), "^".repeat($error.end.index - $error.start.index));
 
         print(format!(
             "<br><span class=\"bold cyan\">{:?}</span><span class=\"bold\"> at {}:{}:{}</span><br>{}<br>{}<br>{}{}<br><br><span class=\"red bold\">{}</span>",
             $error.kind,
-            $error.location.filename,
-            $error.location.line,
-            $error.location.column,
+            $error.start.filename,
+            $error.start.line,
+            $error.start.column,
             line1,
             line2,
             marker,
