@@ -17,6 +17,10 @@ const examples = [
         name: 'Box',
         file: 'box.ro',
     },
+    {
+        name: 'Prime Numbers',
+        file: 'prime.ro',
+    },
 ]
 
 main()

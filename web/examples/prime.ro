@@ -1,0 +1,25 @@
+var step = 1
+var num = 2
+
+// Endlessly loop over numbers
+loop {
+    // Skip even numbers except 2
+    if (num != 2 & num % 2 == 0) {
+        num += step
+        continue
+    }
+
+    var num2 = 2
+    var isPrime = true
+    while (num2 != num) {
+        // Test if division result is integer
+        if (num / num2 == num \ num2) {
+            isPrime = false
+            break
+        }
+        num2 += 1
+    }
+    if (isPrime) printl(num)
+
+    num += step
+}
