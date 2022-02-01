@@ -1,4 +1,5 @@
 import { initMonaco } from './monaco'
+import 'no-darkreader'
 
 const examples = [
     {
