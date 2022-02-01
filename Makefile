@@ -15,6 +15,7 @@ pull:
 	echo ")" >> $(GRAMMAR_FILE)
 	curl https://raw.githubusercontent.com/RubixDev/vscode-roost/master/language-configuration.json > $(CONFIG_FILE)
 	sed -i '1i export default' $(CONFIG_FILE)
+	node FetchTheme.js
 
 crate:
 	wasm-pack build --target web --out-dir web/src/pkg
