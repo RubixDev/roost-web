@@ -221,3 +221,26 @@ button:not(:disabled):hover {
 .dark-gray {
     color: var(--dark-gray);
 }
+
+.ansi_color {
+    color: var(--ansi-fg-color);
+}
+
+.ansi_blink {
+    animation: blink 1.2s linear 0s infinite normal;
+}
+
+@keyframes blink {
+    0% {
+        color: transparent;
+    }
+    50% {
+        color: transparent;
+    }
+    51% {
+        color: var(--ansi-fg-color);
+    }
+    100% {
+        color: var(--ansi-fg-color);
+    }
+}

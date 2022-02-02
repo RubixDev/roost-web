@@ -3,6 +3,8 @@ use roost::lexer::Lexer;
 use roost::parser::Parser;
 use roost::interpreter::Interpreter;
 
+mod parse_ansi;
+
 #[wasm_bindgen(raw_module = "../roost.worker")]
 extern {
     pub fn print(message: String);
@@ -65,12 +67,12 @@ pub fn run(code: String) {
 
     let mut interpreter = Interpreter::new(nodes, |message| {
         print(
-            message.replace('&', "&amp;")
+            parse_ansi::parse(message.replace('&', "&amp;")
                 .replace('<', "&lt;")
                 .replace('>', "&gt;")
                 .replace('\n', "<br>")
                 .replace('\t', "&emsp;&emsp;&emsp;&emsp;")
-                .replace(' ', "&ensp;")
+                .replace(' ', "&ensp;"))
         )
     }, exit);
     match interpreter.run() {
