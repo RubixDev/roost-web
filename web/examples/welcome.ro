@@ -83,8 +83,25 @@ fun add(num1, num2) {
     // Using the 'return' statement, any other type can be returned
     return num1 + num2
 }
-// The escape sequences '\n' '\t' and '\r' are supported, although '\r' does not work in the playground
+// The typical escape sequences are supported, although
+// '\a', '\b', '\f', '\r' and '\v' do not work in the playground
 printl('\n' + add(3, 8) + '\n')
+/|
+  \a -- terminal bell
+  \b -- backspace
+  \f -- form feed
+  \n -- line feed
+  \r -- cariiage return
+  \t -- horizontal tab
+  \v -- vertical tab
+  \' -- '
+  \" -- "
+  \\ -- \
+  \000 -- three octal digits for a character code
+  \x00 -- two hexadecimal digits for a character code
+  \u0000 -- four hexadecimal digits for a unicode character code
+  \U00000000 -- eight hexadecimal digits for a unicode character code
+|/
 
 // The following mathematical operations are supported:
 printl(10 + 3)
@@ -115,3 +132,8 @@ printl(!!print, !!greet) // Anything else is true
 
 // A ternary operator like in C or Java(Script) can be used to check for conditions in an expression context
 printl('\n' + (iteration == 'iiii' ? 'yes' : 'no'))
+
+// exit the program with the given exit code
+exit(1)
+// anything below cannot be reached
+printl('hello there')
