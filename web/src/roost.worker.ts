@@ -20,3 +20,7 @@ async function main() {
 export function print(message: string) {
     postMessage(['print', message])
 }
+
+export function exit(code: number) {
+    postMessage(['finished', code])
+}

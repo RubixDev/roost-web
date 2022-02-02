@@ -6,6 +6,7 @@ use roost::interpreter::Interpreter;
 #[wasm_bindgen(raw_module = "../roost.worker")]
 extern {
     pub fn print(message: String);
+    pub fn exit(code: i32);
 }
 
 macro_rules! exit {
@@ -71,7 +72,7 @@ pub fn run(code: String) {
                 .replace('\t', "&emsp;&emsp;&emsp;&emsp;")
                 .replace(' ', "&ensp;")
         )
-    });
+    }, exit);
     match interpreter.run() {
         Ok(_) => {},
         Err(e) => exit!(e, code),

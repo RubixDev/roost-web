@@ -76,6 +76,9 @@ async function main() {
             if (event.data[0] === 'finished') {
                 roostWorker?.terminate()
                 killButton.disabled = true
+                const code = event.data[1] === undefined ? 0 : event.data[1]
+                consoleDiv.innerHTML += `<br><br>Process stopped with exit code ${code}`
+                consoleDiv.scrollTo(0, consoleDiv.scrollHeight)
             }
         }
         return worker
