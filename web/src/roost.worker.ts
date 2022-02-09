@@ -10,6 +10,7 @@ async function main() {
             try {
                 run(event.data[1])
             } catch (error) {
+                console.log('wasm error:', error)
                 postMessage(['print', `<span class="bold red">${error}</span><br>`])
             }
             postMessage(['finished'])

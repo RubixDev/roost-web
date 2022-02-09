@@ -2,6 +2,7 @@ use wasm_bindgen::prelude::*;
 use roost::lexer::Lexer;
 use roost::parser::Parser;
 use roost::interpreter::Interpreter;
+use roost::io::Write;
 
 mod parse_ansi;
 
@@ -11,8 +12,8 @@ extern {
     pub fn exit(code: i32);
 }
 
-macro_rules! exit {
-    ($error:expr, $code:expr) => {{
+macro_rules! print_error {
+    ($error:expr, $code:expr) => {
         fn pad_three(num: usize) -> String {
             return format!("{: >3}", num).replace(' ', "&ensp;");
         }
@@ -46,36 +47,44 @@ macro_rules! exit {
             marker,
             line3,
             $error.message,
-        ));
+        ))
+    };
+}
+
+macro_rules! exit {
+    ($error:expr, $code:expr) => {{
+        print_error!($error, $code);
         return;
     }};
 }
 
+struct Console {}
+impl Console { pub fn new() -> Self { Console {} } }
+impl Write for Console {
+    fn write(&mut self, buf: String) {
+        print(parse_ansi::parse(buf
+            .replace('&', "&amp;")
+            .replace('<', "&lt;")
+            .replace('>', "&gt;")
+            .replace('\n', "<br>")
+            .replace('\t', "&emsp;&emsp;&emsp;&emsp;")
+            .replace(' ', "&ensp;")));
+    }
+}
+
 #[wasm_bindgen]
 pub fn run(code: String) {
-    let mut lexer = Lexer::new(&code, String::from("playground.ro"));
-    let tokens = match lexer.scan() {
-        Ok(tokens) => tokens,
-        Err(e) => exit!(e, code),
-    };
-
-    let mut parser = Parser::new(&tokens);
-    let nodes = match parser.parse() {
+    let nodes = match Parser::new_parse(Lexer::new(&code, String::from("playground.ro"))) {
         Ok(nodes) => nodes,
-        Err(e) => exit!(e, code),
+        Err(errors) => {
+            for error in errors {
+                print_error!(error, code);
+            }
+            return;
+        },
     };
 
-    let mut interpreter = Interpreter::new(nodes, |message| {
-        print(
-            parse_ansi::parse(message.replace('&', "&amp;")
-                .replace('<', "&lt;")
-                .replace('>', "&gt;")
-                .replace('\n', "<br>")
-                .replace('\t', "&emsp;&emsp;&emsp;&emsp;")
-                .replace(' ', "&ensp;"))
-        )
-    }, exit);
-    match interpreter.run() {
+    match Interpreter::new_run(nodes, Console::new(), exit) {
         Ok(_) => {},
         Err(e) => exit!(e, code),
     }
