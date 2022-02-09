@@ -78,10 +78,15 @@ printl('hi',      typeOf('hi'))
 printl(true,      typeOf(true))
 printl(1..5,      typeOf(1..5))
 
-// By default functions will return 'void'
+// A decimal number can be written without leading 0
+printl(.5) // 0.5
+
+// By default, functions will return 'null'
 fun add(num1, num2) {
     // Using the 'return' statement, any other type can be returned
     return num1 + num2
+    // Anything below a 'return' cannot be reached
+    printl('bye')
 }
 // The typical escape sequences are supported, although
 // '\a', '\b', '\f', '\r' and '\v' do not work in the playground
@@ -127,11 +132,33 @@ printl(!!0, !!1) // Numbers are false when equal to 0
 printl(!!'', !!'a') // Strings are false when empty
 printl(!!false, !!true) // Booleans are already booleans
 printl(!!(9..=9), !!(9..=10)) // Ranges are false, when the start and end are equal
-printl(!!null, !!print()) // null and void are always false
+printl(!!null, !!print()) // null is always false
 printl(!!print, !!greet) // Anything else is true
 
-// A ternary operator like in C or Java(Script) can be used to check for conditions in an expression context
-printl('\n' + (iteration == 'iiii' ? 'yes' : 'no'))
+// 'if' can be used as en expression as well
+printl('\n' + if (iteration == 'iiii') 'yes' else 'no')
+
+fun sub(num1, num2) {
+    // A function, which does not explicitly return a value
+    // implicitly returns the value of the last statement
+    num1 - num2
+}
+printl(sub(3, 1)) // 2
+
+fun run(param, callback) {
+    callback(param)
+}
+// lambda functions/closures are supported as well
+run('hi', fun (message) { printl(message) })
+
+// Blocks are expressions too. The last statement is the resulting value
+var asd = {
+    var a = 'a'
+    a += 's'
+    a += 'd'
+    a
+}
+printl(asd) // 'asd'
 
 // exit the program with the given exit code
 exit(1)
