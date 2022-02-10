@@ -49,7 +49,7 @@ var iteration = 0
 // while-loops check for a condition on every iteration
 while (iteration < 5) {
     print(iteration + ', ')
-    // Declared variables can be re-assigned with '=', '+=', '-=', '*=', or '/='
+    // Declared variables can be re-assigned with '=', '+=', '-=', '*=', '/=', '%=', '\=', or '**='
     iteration += 1
 }
 printl()
