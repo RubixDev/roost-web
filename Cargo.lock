@@ -71,7 +71,7 @@ dependencies = [
 [[package]]
 name = "roost"
 version = "1.1.0"
-source = "git+https://github.com/RubixDev/roost#4ae4639520f320f91b15d1ffd60c8a83f0d8fed8"
+source = "git+https://github.com/RubixDev/roost#d0e907ddfc8f1f6b0279b97ffef62e52cbb7d273"
 dependencies = [
  "rust_decimal",
 ]

@@ -1,7 +1,7 @@
 use wasm_bindgen::prelude::*;
 use roost::lexer::Lexer;
 use roost::parser::Parser;
-use roost::interpreter::Interpreter;
+use roost::interpreter::{Interpreter, Exit};
 use roost::io::Write;
 
 mod parse_ansi;
@@ -58,7 +58,7 @@ macro_rules! exit {
     }};
 }
 
-struct Console {}
+struct Console;
 impl Console { pub fn new() -> Self { Console {} } }
 impl Write for Console {
     fn write(&mut self, buf: String) {
@@ -70,6 +70,11 @@ impl Write for Console {
             .replace('\t', "&emsp;&emsp;&emsp;&emsp;")
             .replace(' ', "&ensp;")));
     }
+}
+
+struct Quit;
+impl Exit for Quit {
+    fn exit(&mut self, code: i32) { exit(code); }
 }
 
 #[wasm_bindgen]
@@ -84,7 +89,7 @@ pub fn run(code: String) {
         },
     };
 
-    match Interpreter::new_run(nodes, Console::new(), exit) {
+    match Interpreter::new_run(nodes, Console::new(), Quit {}) {
         Ok(_) => {},
         Err(e) => exit!(e, code),
     }
