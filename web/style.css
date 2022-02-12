@@ -48,7 +48,7 @@ body {
 /* ---------- Console ---------- */
 #console {
     padding: 1rem;
-    font-family: monospace;
+    font-family: 'JetBrains Mono';
     color: var(--fg);
     font-size: 14px;
     height: calc(100% - 4.2rem);

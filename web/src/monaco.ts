@@ -60,6 +60,7 @@ export async function initMonaco(): Promise<monaco.editor.IStandaloneCodeEditor>
         value: await startCode(),
         language: 'roost',
         theme: 'vs-dark',
+        fontFamily: 'JetBrains Mono',
         minimap: {
             enabled: true,
         },
