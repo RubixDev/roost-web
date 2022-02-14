@@ -15,26 +15,26 @@ extern {
 macro_rules! print_error {
     ($error:expr, $code:expr) => {
         fn pad_three(num: usize) -> String {
-            return format!("{: >3}", num).replace(' ', "&ensp;");
+            return format!("{: >3}", num).replace(' ', "&nbsp;");
         }
 
         let lines: Vec<String> = $code.split('\n').map(|line| {
             line.replace('&', "&amp;")
                 .replace('<', "&lt;")
                 .replace('>', "&gt;")
-                .replace('\t', "&emsp;&emsp;&emsp;&emsp;")
-                .replace(' ', "&ensp;")
+                .replace('\t', "&nbsp;&nbsp;&nbsp;&nbsp;")
+                .replace(' ', "&nbsp;")
         }).collect();
 
         let line1 = if $error.start.line > 1 {
-            format!("<br>&ensp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.start.line - 1), lines[$error.start.line - 2])
+            format!("<br>&nbsp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.start.line - 1), lines[$error.start.line - 2])
         } else { String::new() };
-        let line2 = format!("&ensp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.start.line), lines[$error.start.line - 1]);
+        let line2 = format!("&nbsp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.start.line), lines[$error.start.line - 1]);
         let line3 = if $error.start.line < lines.len() {
-            format!("<br>&ensp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.start.line + 1), lines[$error.start.line])
+            format!("<br>&nbsp;<span class=\"dark-gray\">{} | </span>{}", pad_three($error.start.line + 1), lines[$error.start.line])
         } else { String::new() };
 
-        let marker = format!("{}<span class=\"red bold\">{}</span>", "&ensp;".repeat($error.start.column + 6), "^".repeat($error.end.index - $error.start.index));
+        let marker = format!("{}<span class=\"red bold\">{}</span>", "&nbsp;".repeat($error.start.column + 6), "^".repeat($error.end.index - $error.start.index));
 
         print(format!(
             "<br><span class=\"bold cyan\">{:?}</span><span class=\"bold\"> at {}:{}:{}</span><br>{}<br>{}<br>{}{}<br><br><span class=\"red bold\">{}</span>",
@@ -67,8 +67,8 @@ impl Write for Console {
             .replace('<', "&lt;")
             .replace('>', "&gt;")
             .replace('\n', "<br>")
-            .replace('\t', "&emsp;&emsp;&emsp;&emsp;")
-            .replace(' ', "&ensp;")));
+            .replace('\t', "&nbsp;&nbsp;&nbsp;&nbsp;")
+            .replace(' ', "&nbsp;")));
     }
 }
 
