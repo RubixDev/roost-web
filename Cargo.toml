@@ -12,4 +12,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 wasm-bindgen = "0.2.79"
-roost = { version = "1.2.0", package = "roost-lang", features = ["no_std_io"] }
+roost = { version = "2.0.4", package = "roost-lang", features = ["no_std_io"] }

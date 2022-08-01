@@ -14,6 +14,9 @@
   about loosing what you typed. Just be careful when loading an example,
   as that will overwrite your code.
 
+  This playground is for Roost version 2, the old playground for version 1
+  is available at https://roost.rubixdev.de/v1
+
   The source code for roost and this playground are available here:
   https://github.com/RubixDev/roost
   https://github.com/RubixDev/roost-web
@@ -34,31 +37,29 @@ greet("World") // Strings can be enclosed with both single and double quotes
 // for-loops can iterate through ranges and strings
 for (num in 1..=20) { // There are inclusive '..=' and exclusive '..' ranges
     printl(num)
-    // There are '|' and '&' for logical OR and AND operations
-    if (num == 42 | num > 99)
+    // There are '||' and '&&' for logical OR and AND operations
+    if (num == 42 || num > 99)
         // A single statement in a block does not require curly braces
         printl(num, 'is nice') // 'print' and 'printl' accept multiple arguments, which will be joined with spaces
 }
-
-// ranges can also be backwards
-for (i in 10..0) print(i + ', ')
-printl()
 
 // New variables are declared with the 'var' keyword
 var iteration = 0
 // while-loops check for a condition on every iteration
 while (iteration < 5) {
     print(iteration + ', ')
-    // Declared variables can be re-assigned with '=', '+=', '-=', '*=', '/=', '%=', '\=', or '**='
+    // Declared variables can be reassigned with '=', '+=', '-=' and alike
     iteration += 1
 }
 printl()
 
-// Re-declaring a variable can change its type
+// Redeclaring a variable can change its type
 var iteration = ''
 // 'loop' keywords will only stop when 'break' is called
 loop {
-    if (iteration == 'iiii') break
+    if (iteration == 'iiii') {
+        break
+    }
     iteration += 'i'
     // 'continue' skips to the next iteration of the loop
     if (iteration == 'ii') continue
@@ -113,9 +114,16 @@ printl(10 + 3)
 printl(10 - 3)
 printl(10 * 3)
 printl(10 / 3)
-printl(10 % 3) // Modulo is the remainder during division
+printl(10 % 3) // Remainder of division
 printl(10 \ 3) // Integer division divides and rounds the result down
 printl(10 ** 3) // Raises 10 to the power of 3
+
+// Additionally, the common bitwise operations are supported
+assert(1 << 2 == 4) // 0b001 shifted left by two bits == 0b100
+assert(4 >> 2 == 1) // 0b100 shifted right by two bits == 0b001
+assert(4 | 1 == 5) // 0b100  OR 0b001 == 0b101
+assert(6 ^ 3 == 5) // 0b110 XOR 0b011 == 0b101
+assert(5 & 4 == 4) // 0b101 AND 0b100 == 0b100
 
 printl()
 
@@ -130,12 +138,12 @@ printl()
 // by negating it twice
 printl(!!0, !!1) // Numbers are false when equal to 0
 printl(!!'', !!'a') // Strings are false when empty
-printl(!!false, !!true) // Booleans are already booleans
-printl(!!(9..=9), !!(9..=10)) // Ranges are false, when the start and end are equal
+printl(!!false, !!true) // Booleans are already true or false
+printl(!!(9..=9), !!(9..=10)) // Ranges are false when empty (i.e. when the start and end are equal)
 printl(!!null, !!print()) // null is always false
 printl(!!print, !!greet) // Anything else is true
 
-// 'if' can be used as en expression as well
+// 'if' is an expression
 printl('\n' + if (iteration == 'iiii') 'yes' else 'no')
 
 fun sub(num1, num2) {
@@ -149,7 +157,7 @@ fun run(param, callback) {
     callback(param)
 }
 // lambda functions/closures are supported as well
-run('hi', fun (message) { printl(message) })
+run('hi', fun (message) printl(message))
 
 // Blocks are expressions too. The last statement is the resulting value
 var asd = {
@@ -162,5 +170,5 @@ printl(asd) // 'asd'
 
 // exit the program with the given exit code
 exit(1)
-// anything below cannot be reached
+// anything after cannot be reached
 printl('hello there')

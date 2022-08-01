@@ -70,10 +70,11 @@ dependencies = [
 
 [[package]]
 name = "roost-lang"
-version = "1.2.0"
+version = "2.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "14b09312dbeb7abe30d5c7ef4c46953cb54e65868aedd7cfae4cf4036c94736e"
+checksum = "343ac71db352c5e3fc92329b9871204615e3f06d2771d41acacfcd901fd2671b"
 dependencies = [
+ "once_cell",
  "rust_decimal",
 ]
 
